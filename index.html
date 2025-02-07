@@ -1,66 +1,318 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Моё Резюме</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalzhanov Nurlykhan - Premium Professional CV</title>
+  <!-- Google Fonts for elegant typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-color: #e91e63;
+      --secondary-color: #333;
+      --bg-color: #f9f9f9;
+      --header-bg: rgba(255, 255, 255, 0.95);
+      --header-shadow: rgba(0, 0, 0, 0.1);
+    }
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
+      font-family: 'Open Sans', sans-serif;
+      background: var(--bg-color);
+      color: var(--secondary-color);
+      line-height: 1.6;
     }
-    h1, h2 {
-      color: #333;
+    a {
+      text-decoration: none;
+      color: inherit;
     }
-    p {
-      line-height: 1.5;
+    /* Header & Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--header-bg);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px var(--header-shadow);
+      z-index: 1000;
     }
-    .section {
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+    nav a {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--secondary-color);
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--primary-color);
+      transition: width 0.3s;
+    }
+    nav a:hover {
+      color: var(--primary-color);
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      color: #fff;
+      padding: 0 20px;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .hero-content {
+      max-width: 800px;
+      z-index: 1;
+    }
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      animation: fadeInDown 1s ease-out;
+    }
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease-out;
+    }
+    .hero .btn {
+      background: var(--primary-color);
+      color: #fff;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      animation: fadeInUp 1s ease-out;
+    }
+    .hero .btn:hover {
+      background: #d81b60;
+    }
+    /* Section Styles */
+    section {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      color: var(--secondary-color);
+      position: relative;
+    }
+    section h2::after {
+      content: "";
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: var(--primary-color);
+      margin: 20px auto 0;
+    }
+    /* Card & Grid Layouts */
+    .card {
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
       margin-bottom: 30px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    /* Footer */
+    footer {
+      background: var(--secondary-color);
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    /* Keyframe Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      .hero p {
+        font-size: 1.2rem;
+      }
+      nav {
+        gap: 15px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Иван Иванов</h1>
-  <p>Программист</p>
-  
-  <div class="section">
-    <h2>Обо мне</h2>
-    <p>Я увлеченный программист с 5-летним опытом разработки веб-приложений. У меня прочные знания в JavaScript, React и Node.js.</p>
-  </div>
-  
-  <div class="section">
-    <h2>Опыт</h2>
-    <h3>Программист, ABC Company</h3>
-    <p>Август 2019 - Настоящее время</p>
-    <ul>
-      <li>Разработка и поддержка веб-приложений с использованием React и Node.js</li>
-      <li>Совместная работа с кросс-функциональными командами по проектированию и внедрению новых возможностей</li>
-      <li>Участие в обзорах кода и помощь в улучшении качества кода</li>
-    </ul>
-    
-    <h3>Стажер, XYZ Corporation</h3>
-    <p>Май 2018 - Август 2018</p>
-    <ul>
-      <li>Помощь в разработке веб-приложения на Angular</li>
-      <li>Получение опыта в agile-разработке</li>
-      <li>Участие в ежедневных стендапах и встречах по планированию проектов</li>
-    </ul>
-  </div>
-  
-  <div class="section">
-    <h2>Образование</h2>
-    <h3>Бакалавр Компьютерных Наук</h3>
-    <p>Университет Примера, Май 2018</p>
-  </div>
-  
-  <div class="section">
-    <h2>Навыки</h2>
-    <ul>
-      <li>JavaScript</li>
-      <li>React</li>
-      <li>Node.js</li>
-      <li>HTML/CSS</li>
-      <li>Git</li>
-    </ul>
-  </div>
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="logo">Kalzhanov Nurlykhan</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Welcome to My Professional CV</h1>
+      <p>Innovative Developer | Data Analyst | Machine Learning Expert</p>
+      <button class="btn" onclick="scrollToSection('about')">Discover More</button>
+    </div>
+  </section>
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="card">
+      <p>Hello, I'm Kalzhanov Nurlykhan, a seasoned developer with expertise in web development, IoT, and machine learning. I blend creative problem-solving with technical acumen to deliver innovative solutions that drive success. With a robust background in research and hands-on experience in leading high-impact projects, I stand at the forefront of technology.</p>
+    </div>
+  </section>
+  <!-- Experience Section -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Full Stack ML Expert <small>(Present)</small></h3>
+        <p>Leading AI initiatives and integrating advanced machine learning solutions across platforms while mentoring a team of professionals.</p>
+      </div>
+      <div class="card">
+        <h3>CRM Analytics at HUBB <small>(2023-2024)</small></h3>
+        <p>Transforming raw data into actionable insights to optimize business processes and strengthen brand strategies.</p>
+      </div>
+      <div class="card">
+        <h3>Web Developer at ALEMTRADE <small>(2022-2023)</small></h3>
+        <p>Developing visually compelling and highly functional web applications, ensuring a seamless user experience through innovative design.</p>
+      </div>
+      <div class="card">
+        <h3>Junior Research at KBTU BIG SOFT <small>(2021-2022)</small></h3>
+        <p>Conducting research on machine learning applications in analyzing rock characteristics using advanced frameworks such as TensorFlow, Keras, and PyTorch.</p>
+      </div>
+    </div>
+  </section>
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2>Skills & Technologies</h2>
+    <div class="grid">
+      <div class="card">
+        <h4>Web Development</h4>
+        <p>Django, Flutter</p>
+      </div>
+      <div class="card">
+        <h4>Machine Learning</h4>
+        <p>TensorFlow, Keras, PyTorch</p>
+      </div>
+      <div class="card">
+        <h4>IoT</h4>
+        <p>Arduino, ESP, Raspberry Pi</p>
+      </div>
+      <div class="card">
+        <h4>Data Analytics</h4>
+        <p>SQL, PowerBI</p>
+      </div>
+      <div class="card">
+        <h4>Advanced AI</h4>
+        <p>LLM, RAG</p>
+      </div>
+    </div>
+  </section>
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="card">
+      <p>Email: <a href="mailto:nurkal022@gmail.com">nurkal022@gmail.com</a></p>
+      <p>Phone: +7-747-728-41-43</p>
+      <p>Location: Almaty, Kazakhstan</p>
+      <a class="btn" href="https://kalzhanovnn.kz">Visit My Website</a>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Kalzhanov Nurlykhan. All Rights Reserved.</p>
+  </footer>
+  <!-- JavaScript for Smooth Scrolling & Reveal Animations -->
+  <script>
+    // Smooth scrolling to sections
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+    // Intersection Observer for reveal animations
+    const sections = document.querySelectorAll('section');
+    const options = { threshold: 0.3 };
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+    sections.forEach(section => observer.observe(section));
+  </script>
 </body>
 </html>
